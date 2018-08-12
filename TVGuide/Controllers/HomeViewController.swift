@@ -12,48 +12,52 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var showsTableView: UITableView!
     
+    var tvShows = [Show]()
     let showsTableViewCellReuseIdentifier = "TVShowTableViewCell"
+    let showsTableViewCellHeight: CGFloat = 80
+    let homePageTitle = "My shows"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        APIController.getSchedule() { shows in
+            self.tvShows = shows
+            DispatchQueue.main.async {
+                self.showsTableView.reloadData()
+            }
+        }
+
         showsTableView.register(UINib(nibName: "TVShowTableViewCell", bundle: nil), forCellReuseIdentifier: showsTableViewCellReuseIdentifier)
         showsTableView.dataSource = self
         showsTableView.delegate = self
 
-        navigationItem.title = "My shows"
+        navigationItem.title = homePageTitle
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return tvShows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = showsTableView.dequeueReusableCell(withIdentifier: showsTableViewCellReuseIdentifier, for: indexPath) as! TVShowTableViewCell
+        let show = tvShows[indexPath.row]
+        cell.showTitle.text = show.title
+        cell.showStartTime.text = show.startTime
+        cell.showEndTime.text = show.endTime
+        cell.channelLogo.image = Show.getIconForChannel(show.channel)
+        cell.showRatingLogo.image = Show.getIconForRating(show.rating)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return showsTableViewCellHeight
     }
 }
 

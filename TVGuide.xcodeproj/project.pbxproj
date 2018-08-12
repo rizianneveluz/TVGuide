@@ -16,6 +16,9 @@
 		711B6E41211FFE6C0059CC36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 711B6E40211FFE6C0059CC36 /* Main.storyboard */; };
 		711B6E43211FFF350059CC36 /* TVShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711B6E42211FFF350059CC36 /* TVShowDetailsViewController.swift */; };
 		711B6E4721200B5D0059CC36 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711B6E4621200B5D0059CC36 /* HomeViewController.swift */; };
+		71457C3721202626001608BC /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71457C3621202626001608BC /* APIController.swift */; };
+		71457C3A21202B73001608BC /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71457C3921202B73001608BC /* Show.swift */; };
+		71457C3C21202BEC001608BC /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71457C3B21202BEC001608BC /* APIResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +45,9 @@
 		711B6E40211FFE6C0059CC36 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		711B6E42211FFF350059CC36 /* TVShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TVShowDetailsViewController.swift; path = TVGuide/Controllers/TVShowDetailsViewController.swift; sourceTree = SOURCE_ROOT; };
 		711B6E4621200B5D0059CC36 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		71457C3621202626001608BC /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
+		71457C3921202B73001608BC /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
+		71457C3B21202BEC001608BC /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,7 @@
 		711B6E11211FEFB00059CC36 /* TVGuide */ = {
 			isa = PBXGroup;
 			children = (
+				71457C3821202B51001608BC /* Models */,
 				711B6E33211FF0CE0059CC36 /* Controllers */,
 				711B6E32211FF09A0059CC36 /* Views */,
 				711B6E12211FEFB00059CC36 /* AppDelegate.swift */,
@@ -117,8 +124,18 @@
 			children = (
 				711B6E42211FFF350059CC36 /* TVShowDetailsViewController.swift */,
 				711B6E4621200B5D0059CC36 /* HomeViewController.swift */,
+				71457C3621202626001608BC /* APIController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		71457C3821202B51001608BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				71457C3921202B73001608BC /* Show.swift */,
+				71457C3B21202BEC001608BC /* APIResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,10 +242,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71457C3C21202BEC001608BC /* APIResponse.swift in Sources */,
+				71457C3A21202B73001608BC /* Show.swift in Sources */,
 				711B6E3C211FF3340059CC36 /* TVShowTableViewCell.swift in Sources */,
 				711B6E13211FEFB00059CC36 /* AppDelegate.swift in Sources */,
 				711B6E43211FFF350059CC36 /* TVShowDetailsViewController.swift in Sources */,
 				711B6E4721200B5D0059CC36 /* HomeViewController.swift in Sources */,
+				71457C3721202626001608BC /* APIController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
