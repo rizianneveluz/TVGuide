@@ -19,12 +19,26 @@ class TVShowDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         let detailsView = Bundle.main.loadNibNamed("TVShowDetailsView", owner: self, options: nil)?.first as! TVShowDetailsView
+        detailsView.frame = self.view.frame;
+
         detailsView.showTitle.text = showTitle
         detailsView.showStartTime.text = showStartTime
         detailsView.showEndTime.text = showEndTime
         detailsView.showRatingLogo.image = showRatingLogo
-        detailsView.showRatingLogo.contentMode = .scaleAspectFill
         
+        APIController.getExtraDetailsForShow(showTitle!) { details in
+            let url = URL.init(string: details.poster)
+            APIController.getImageFromUrl(url!) { data in
+                DispatchQueue.main.async {
+                    detailsView.showPoster.image = UIImage.init(data: data!)
+                    detailsView.showPoster.alpha = 0.5
+                }
+            }
+
+            DispatchQueue.main.async {
+                detailsView.summary.text = details.plot
+            }
+        }
         self.view.addSubview(detailsView)
         
         navigationItem.title = showTitle

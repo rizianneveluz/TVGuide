@@ -2,7 +2,7 @@
 //  HomeViewController.swift
 //  TVGuide
 //
-//  Created by Xhan on 12/08/2018.
+//  Created by Rizianne Veluz on 12/08/2018.
 //  Copyright © 2018 Rizianne Veluz. All rights reserved.
 //
 

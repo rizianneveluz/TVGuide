@@ -21,6 +21,7 @@
 		71457C3C21202BEC001608BC /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71457C3B21202BEC001608BC /* APIResponse.swift */; };
 		71457C40212045F4001608BC /* TVShowDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71457C3F212045F4001608BC /* TVShowDetailsView.xib */; };
 		71457C4221204605001608BC /* TVShowDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71457C4121204605001608BC /* TVShowDetailsView.swift */; };
+		71457C44212068D9001608BC /* ShowExtraDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71457C43212068D9001608BC /* ShowExtraDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		71457C3B21202BEC001608BC /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		71457C3F212045F4001608BC /* TVShowDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVShowDetailsView.xib; sourceTree = "<group>"; };
 		71457C4121204605001608BC /* TVShowDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowDetailsView.swift; sourceTree = "<group>"; };
+		71457C43212068D9001608BC /* ShowExtraDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowExtraDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			children = (
 				71457C3921202B73001608BC /* Show.swift */,
 				71457C3B21202BEC001608BC /* APIResponse.swift */,
+				71457C43212068D9001608BC /* ShowExtraDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				71457C3A21202B73001608BC /* Show.swift in Sources */,
 				711B6E3C211FF3340059CC36 /* TVShowTableViewCell.swift in Sources */,
 				711B6E13211FEFB00059CC36 /* AppDelegate.swift in Sources */,
+				71457C44212068D9001608BC /* ShowExtraDetails.swift in Sources */,
 				711B6E43211FFF350059CC36 /* TVShowDetailsViewController.swift in Sources */,
 				711B6E4721200B5D0059CC36 /* HomeViewController.swift in Sources */,
 				71457C4221204605001608BC /* TVShowDetailsView.swift in Sources */,
