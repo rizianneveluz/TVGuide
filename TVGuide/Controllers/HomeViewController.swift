@@ -12,10 +12,12 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var showsTableView: UITableView!
     
-    var tvShows = [Show]()
-    let showsTableViewCellReuseIdentifier = "TVShowTableViewCell"
-    let showsTableViewCellHeight: CGFloat = 80
-    let homePageTitle = "My shows"
+    private var tvShows = [Show]()
+    private let showsTableViewCellReuseIdentifier = "TVShowTableViewCell"
+    private let showsTableViewCellHeight: CGFloat = 80
+    private let homePageTitle = "My shows"
+    private let tableViewHeaderTitle = "TONIGHT"
+    private let homeToDetailsSegueIdentifier = "homeToDetailsSegue"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,17 @@ class HomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == homeToDetailsSegueIdentifier {
+            let show = tvShows[(showsTableView.indexPathForSelectedRow?.row)!]
+            let detailsViewController = segue.destination as! TVShowDetailsViewController
+            detailsViewController.showTitle = show.title
+            detailsViewController.showStartTime = show.startTime
+            detailsViewController.showEndTime = show.endTime
+            detailsViewController.showRatingLogo = Show.getIconForRating(show.rating)
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -56,6 +69,10 @@ extension HomeViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return tableViewHeaderTitle
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return showsTableViewCellHeight
     }
@@ -63,6 +80,6 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        performSegue(withIdentifier: homeToDetailsSegueIdentifier, sender: self)
     }
 }

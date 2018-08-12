@@ -44,7 +44,7 @@
                     <navigationItem key="navigationItem" id="WeY-i9-5WN"/>
                     <connections>
                         <outlet property="showsTableView" destination="Jwb-XX-CBX" id="AzF-x1-RS3"/>
-                        <segue destination="STD-yn-fsc" kind="show" id="W53-D5-qqY"/>
+                        <segue destination="STD-yn-fsc" kind="show" identifier="homeToDetailsSegue" id="W53-D5-qqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcy-hq-DfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -55,7 +55,7 @@
         <scene sceneID="xB9-Lk-bv8">
             <objects>
                 <viewController id="STD-yn-fsc" customClass="TVShowDetailsViewController" customModule="TVGuide" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="O39-WT-O3O">
+                    <view key="view" contentMode="scaleToFill" id="O39-WT-O3O" customClass="TVShowDetailsView" customModule="TVGuide" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

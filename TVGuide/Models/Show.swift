@@ -14,9 +14,7 @@ struct Show: Decodable {
     var startTime: String
     var endTime: String
     var rating: String
-    var ratingLogo: UIImage = UIImage()
     var channel: String
-    var channelLogo: UIImage = UIImage()
     
     private enum CodingKeys: String, CodingKey {
         case title = "name"
