@@ -18,20 +18,20 @@ class HomeViewController: UIViewController {
     private let homePageTitle = "My shows"
     private let tableViewHeaderTitle = "TONIGHT"
     private let homeToDetailsSegueIdentifier = "homeToDetailsSegue"
+    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    private let tableViewFooterPullOffset: CGFloat = 50
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        APIController.getSchedule() { shows in
-            self.tvShows = shows
-            DispatchQueue.main.async {
-                self.showsTableView.reloadData()
-            }
-        }
+        fetchMoreShows()
 
         showsTableView.register(UINib(nibName: "TVShowTableViewCell", bundle: nil), forCellReuseIdentifier: showsTableViewCellReuseIdentifier)
         showsTableView.dataSource = self
         showsTableView.delegate = self
+        
+        loadingIndicator.frame = CGRect(x:0, y:0, width:showsTableView.frame.size.width, height: showsTableViewCellHeight)
+        showsTableView.tableFooterView = loadingIndicator
+        showsTableView.tableFooterView?.isHidden = true
 
         navigationItem.title = homePageTitle
     }
@@ -50,6 +50,32 @@ class HomeViewController: UIViewController {
             detailsViewController.showEndTime = show.endTime
             detailsViewController.showRatingLogo = Show.getIconForRating(show.rating)
         }
+    }
+    
+    @objc private func fetchMoreShows() {
+        APIController.getScheduleList(startingAt: tvShows.count) { shows in
+            guard let moreShows = shows else {
+                DispatchQueue.main.async {
+                    self.hideLoadingIndicator()
+                }
+                return
+            }
+            self.tvShows.append(contentsOf: moreShows)
+            DispatchQueue.main.async {
+                self.showsTableView.reloadData()
+                self.hideLoadingIndicator()
+            }
+        }
+    }
+    
+    private func showLoadingIndicator() {
+        loadingIndicator.startAnimating()
+        showsTableView.tableFooterView?.isHidden = false
+    }
+    
+    private func hideLoadingIndicator() {
+        self.loadingIndicator.stopAnimating()
+        self.showsTableView.tableFooterView?.isHidden = true
     }
 }
 
@@ -81,5 +107,16 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: homeToDetailsSegueIdentifier, sender: self)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == showsTableView {
+            let currentOffset = scrollView.contentOffset.y
+            let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+            if (maximumOffset - currentOffset) <= tableViewFooterPullOffset {
+                showLoadingIndicator()
+                fetchMoreShows()
+            }
+        }
     }
 }

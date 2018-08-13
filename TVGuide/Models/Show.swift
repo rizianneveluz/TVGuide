@@ -81,14 +81,14 @@ private enum Rating: String {
 }
 
 private enum Channel: String {
-    case SevenTwo
-    case SevenMate
+    case SevenTwo = "7TWO"
+    case SevenMate = "7Mate"
     case ABC1
-    case Eleven
+    case Eleven = "ELEVEN"
     case Nine
-    case One
-    case SBS2
-    case SBSOne
+    case One = "ONE"
+    case SBS2 = "SBS 2"
+    case SBSOne = "SBS One"
     case Seven
-    case Ten
+    case Ten = "TEN"
 }

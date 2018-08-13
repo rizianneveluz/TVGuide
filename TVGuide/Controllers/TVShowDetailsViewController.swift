@@ -26,7 +26,14 @@ class TVShowDetailsViewController: UIViewController {
         detailsView.showEndTime.text = showEndTime
         detailsView.showRatingLogo.image = showRatingLogo
         
-        APIController.getExtraDetailsForShow(showTitle!) { details in
+        APIController.getExtraDetailsForShow(showTitle!) { data in
+            guard let details = data else {
+                DispatchQueue.main.async {
+                    detailsView.summary.text = "No summary available"
+                }
+                return
+            }
+            
             let url = URL.init(string: details.poster)
             APIController.getImageFromUrl(url!) { data in
                 DispatchQueue.main.async {
