@@ -19,7 +19,7 @@ class TVShowDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         let detailsView = Bundle.main.loadNibNamed("TVShowDetailsView", owner: self, options: nil)?.first as! TVShowDetailsView
-        detailsView.frame = self.view.frame;
+        detailsView.frame = self.view.safeAreaLayoutGuide.layoutFrame;
 
         detailsView.showTitle.text = showTitle
         detailsView.showStartTime.text = showStartTime
@@ -28,16 +28,17 @@ class TVShowDetailsViewController: UIViewController {
         
         APIController.getExtraDetailsForShow(showTitle!) { data in
             guard let details = data else {
-                DispatchQueue.main.async {
-                    detailsView.summary.text = "No summary available"
-                }
                 return
             }
             
             let url = URL.init(string: details.poster)
             APIController.getImageFromUrl(url!) { data in
+                guard let fetchedData = data else {
+                    return
+                }
+                
                 DispatchQueue.main.async {
-                    detailsView.showPoster.image = UIImage.init(data: data!)
+                    detailsView.showPoster.image = UIImage.init(data: fetchedData)
                     detailsView.showPoster.alpha = 0.5
                 }
             }

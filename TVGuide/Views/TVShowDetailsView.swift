@@ -16,5 +16,5 @@ class TVShowDetailsView: UIView {
     @IBOutlet weak var showRatingLogo: UIImageView!
     @IBOutlet weak var showPoster: UIImageView!
     @IBOutlet weak var summary: UILabel!
-    
+    @IBOutlet weak var scrollview: UIScrollView!
 }
