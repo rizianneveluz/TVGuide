@@ -6,8 +6,8 @@ The application uses whatsbeef.net's API for getting the list of shows and [OMDb
 ##### Deployment Target
 - Currently, only iOS 11
 
-##### Devices tested
-- iPhone X (simulator)
+##### Devices tested (simulator)
+- iPhone X
 - iPhone 6+
 - iPhone 6
 - iPhone SE
